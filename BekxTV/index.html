@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bekx Sports Plus</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+    }
+
+    #video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+    }
+
+    .logo {
+      position: absolute;
+      top: 2px; /* Daha yukarı aldık */
+      right: 10px;
+      width: 100px;
+      opacity: 0.8;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="video-container">
+    <video id="video" controls></video>
+    <img class="logo" src="logo.png" alt="Logo" />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    const video = document.getElementById('video');
+    const videoSrc = 'https://tv-trt1.medya.trt.com.tr/master_1080.m3u8'; // M3U8 linki buraya
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    }
+  </script>
+</body>
+</html>
