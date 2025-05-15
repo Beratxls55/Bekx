@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="UTF-8" />
   <title>Bekx Sports Plus</title>
@@ -12,21 +12,22 @@
     #video-container {
       position: relative;
       width: 100%;
-      max-width: 800px;
+      max-width: 960px;
       margin: auto;
     }
 
     video {
       width: 100%;
       height: auto;
+      display: block;
     }
 
     .logo {
       position: absolute;
-      top: 2px; /* Daha yukarı aldık */
-      right: 10px;
-      width: 100px;
-      opacity: 0.8;
+      top: 10px;
+      right: 20px;
+      width: 140px; /* logo boyutunu buradan ayarlayabilirsin */
+      opacity: 0.9;
       z-index: 10;
     }
   </style>
@@ -34,13 +35,14 @@
 <body>
   <div id="video-container">
     <video id="video" controls></video>
-    <img class="logo" src="logo.png" alt="Logo" />
+    <img class="logo" src="logo.png" alt="Bekx Sports Plus">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script>
     const video = document.getElementById('video');
-    const videoSrc = 'https://tv-trt1.medya.trt.com.tr/master_1080.m3u8'; // M3U8 linki buraya
+    const videoSrc = 'https://tv-trt1.medya.trt.com.tr/master_1080.m3u8';
+    
     if (Hls.isSupported()) {
       const hls = new Hls();
       hls.loadSource(videoSrc);
